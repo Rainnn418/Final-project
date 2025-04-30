@@ -5,8 +5,10 @@ while game:
     v = input("Would you like to add a book? (yes or no)")
 
     if v == "yes":
-        a.Add()
+        b = a.Add()
     elif v == "no":
-        a.Minus()
+        c = a.Minus()
+    elif v == "y":
+        d = a.showbook()
     else:
         print("Please enter 'yes' or 'no'.")
