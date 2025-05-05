@@ -27,6 +27,19 @@ class books():
     def showbook(self):
         for x in self.Books:
             print(x)
-            print(self.Books[x]["author"])
-            print(self.Books[x]["price"])
-
+            print("author: ", self.Books[x]["author"])
+            print("price: ", self.Books[x]["price"])
+    
+    def save(self):
+        name = input("What do you want the file to be named? ")
+        with open(name, "w") as f:    
+            print("You have added.")
+            print(self.title)
+            print("author: ", self.Books[self.title]["author"])
+            print("price: ", self.Books[self.title]["price"])
+    
+    def load(self):
+             print(self.title)
+             print("author: ", self.Books[self.title]["author"])
+             print("price: ", self.Books[self.title]["price"])
+    
