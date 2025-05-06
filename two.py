@@ -1,4 +1,12 @@
 from one import books
+class bcolors:
+     RED = '\033[91m'
+     GREEN = '\033[92m'
+     YELLOW = '\033[93m'
+     BLUE = '\033[94m'
+     PURPLE = '\033[95m'
+     ENDC = '\033[0m'
+
 a = books()
 game = True 
 while game:
@@ -15,4 +23,4 @@ while game:
     elif v == "5":
         f = a.load()
     else:
-        print("Worry")
+        print(bcolors.RED + "Worry" + bcolors.ENDC)
