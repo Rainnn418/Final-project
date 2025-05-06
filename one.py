@@ -33,13 +33,10 @@ class books():
     def save(self):
         name = input("What do you want the file to be named? ")
         with open(name, "w") as f:    
-            print("You have added.")
-            print(self.title)
-            print("author: ", self.Books[self.title]["author"])
-            print("price: ", self.Books[self.title]["price"])
-    
+            f.write(str(self.Books))
+            print(f"《{self.title}》 saved to {name}")
+           
     def load(self):
              print(self.title)
              print("author: ", self.Books[self.title]["author"])
              print("price: ", self.Books[self.title]["price"])
-    
