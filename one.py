@@ -1,3 +1,4 @@
+import os
 class bcolors:
      RED = '\033[91m'
      GREEN = '\033[92m'
@@ -14,13 +15,16 @@ class books():
         self.Books = {}
         
     def Add(self):
-        self.title = input(bcolors.BLUE + "Enter the name of the book you add    \n" + bcolors.ENDC)
-        self.author = input(bcolors.BLUE + "Enter the Author of the book you add    \n" + bcolors.ENDC)
-        self.price = float(input(bcolors.BLUE + "Enter the listing price of the book    \n" + bcolors.ENDC))
-        self.Books[self.title] = {'author': self.author, 'price': self.price}
+        try:
+            self.title = input(bcolors.BLUE + "Enter the name of the book you add    \n" + bcolors.ENDC)
+            self.author = input(bcolors.BLUE + "Enter the Author of the book you add    \n" + bcolors.ENDC)
+            self.price = float(input(bcolors.BLUE + "Enter the listing price of the book    \n" + bcolors.ENDC))
+            self.Books[self.title] = {'author': self.author, 'price': self.price}
        
-        print(bcolors.GREEN + "You have added", self.title + bcolors.ENDC)
-        print(self.Books)
+            print(bcolors.GREEN + "You have added", self.title + bcolors.ENDC)
+            print(self.Books)
+        except:
+            print(bcolors.RED + "Please enter the correct price." + bcolors.ENDC)
 
     def Minus(self):
         self.title = input(bcolors.BLUE + "Enter the name of the book you remove    \n" + bcolors.ENDC)
@@ -30,7 +34,7 @@ class books():
                del self.Books[self.title]
                print(bcolors.GREEN + "The remaining books:", self.title + bcolors.ENDC)
         except:
-            print("Please enter a book title")
+            print(bcolors.RED + "Please enter a book title" + bcolors.ENDC)
 
     def showbook(self):
         for x in self.Books:
@@ -39,14 +43,24 @@ class books():
             print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
     
     def save(self):
-        name = input("What do you want the file to be named? ")
+        name = input(bcolors.BLUE + "What do you want the file to be named?" + bcolors.ENDC)
         with open(name, "w") as f:    
-            f.write(str(self.Books))
-            print(bcolors.GREEN + f"《{self.title}》saved to {name}" + bcolors.ENDC)
+            for x in self.Books:
+                f.write("Title: " + x + "\n" + "Author: " + self.Books[x]["author"] +  "\n" + "Price: " + str(self.Books[x]["price"]) + "\n" + "\n")
+            print(bcolors.GREEN + f"All books saved to {name}" + bcolors.ENDC)
            
     def load(self):
-        filename = input("Which file do you want to open?")
-        with open(filename, "r") as f:
-             print("Title: ",self.title)
-             print("Author: ", self.Books[self.title]["author"])
-             print("Price: ", self.Books[self.title]["price"])
+        filename = input(bcolors.BLUE + "Which file do you want to open?" + bcolors.ENDC)
+        if os.path.exists(filename):
+            with open(filename, "r") as f:
+                print(f.read())
+        else:
+            print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
+
+    def delete(self):
+        filename = input(bcolors.BLUE + "Which file do you want to delete?" + bcolors.ENDC)
+        if os.path.exists(filename):
+           os.remove(filename)
+           print(bcolors.GREEN + "You have deleted." + bcolors.ENDC)
+        else:
+            print(bcolors.RED + "The file does not exist" + bcolors.ENDC)

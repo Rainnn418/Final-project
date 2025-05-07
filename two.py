@@ -10,7 +10,7 @@ class bcolors:
 a = books()
 game = True 
 while game:
-    v = input("Add book -- 1  \nRemove book -- 2  \nShow books you added -- 3  \nCreate a file -- 4  \nOpen your file --  5  \n")
+    v = input("Add book -- 1  \nRemove book -- 2  \nShow books you added -- 3  \nCreate a file -- 4  \nOpen your file --  5  \nDelete your file --  6  \n")
 
     if v == "1":
         b = a.Add()
@@ -22,5 +22,7 @@ while game:
         e = a.save()
     elif v == "5":
         f = a.load()
+    elif v == "6":
+        g = a.delete()
     else:
         print(bcolors.RED + "Worry" + bcolors.ENDC)
