@@ -53,12 +53,11 @@ class books():
            
     def load(self):
         filename = input(bcolors.BLUE + "Which file do you want to open?" + bcolors.ENDC)
-        f = open("filename.txt")
-      #  if os.path.exists(filename):
-        with open(filename, "r") as f:
+        if os.path.exists(filename):
+            with open(filename, "r") as f:
                 print(f.read())
-      #  else:
-       #     print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
+        else:
+            print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
 
     def delete(self):
         filename = input(bcolors.BLUE + "Which file do you want to delete?" + bcolors.ENDC)
