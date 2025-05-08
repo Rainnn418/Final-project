@@ -17,7 +17,7 @@ class books():
     def Add(self):
         try:
             self.title = input(bcolors.BLUE + "Enter the name of the book you add    \n" + bcolors.ENDC)
-            self.author = input(bcolors.BLUE + "Enter the Author of the book you add    \n" + bcolors.ENDC)
+            self.author = input(bcolors.BLUE + "Enter the author of the book you add    \n" + bcolors.ENDC)
             self.price = float(input(bcolors.BLUE + "Enter the listing price of the book    \n" + bcolors.ENDC))
             self.Books[self.title] = {'author': self.author, 'price': self.price}
        
@@ -33,8 +33,10 @@ class books():
             if self.title in self.Books:
                del self.Books[self.title]
                print(bcolors.GREEN + "The remaining books:", self.title + bcolors.ENDC)
+            else:
+                print(bcolors.RED + "Please enter a correct book title" + bcolors.ENDC)
         except:
-            print(bcolors.RED + "Please enter a book title" + bcolors.ENDC)
+            print(bcolors.RED + "Please enter a correct book title" + bcolors.ENDC)
 
     def showbook(self):
         for x in self.Books:
@@ -51,11 +53,12 @@ class books():
            
     def load(self):
         filename = input(bcolors.BLUE + "Which file do you want to open?" + bcolors.ENDC)
-        if os.path.exists(filename):
-            with open(filename, "r") as f:
+        f = open("filename.txt")
+      #  if os.path.exists(filename):
+        with open(filename, "r") as f:
                 print(f.read())
-        else:
-            print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
+      #  else:
+       #     print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
 
     def delete(self):
         filename = input(bcolors.BLUE + "Which file do you want to delete?" + bcolors.ENDC)
