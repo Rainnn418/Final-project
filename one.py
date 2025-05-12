@@ -39,10 +39,14 @@ class books():
             print(bcolors.RED + "Please enter a correct book title" + bcolors.ENDC)
 
     def showbook(self):
-        for x in self.Books:
-            print(bcolors.YELLOW + x + bcolors.ENDC)
-            print(bcolors.PURPLE + "Author: ", self.Books[x]["author"] + bcolors.ENDC)
-            print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
+        show = input(bcolors.BLUE + "Do you want to show all books you added?" + bcolors.ENDC)
+        if show == "yes":
+            with open(show, "w") as f:    
+
+                for x in self.Books:
+                    print(bcolors.YELLOW + x + bcolors.ENDC)
+                    print(bcolors.PURPLE + "Author: ", self.Books[x]["author"] + bcolors.ENDC)
+                    print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
         
     def save(self):
         name = input(bcolors.BLUE + "What do you want the file to be named?" + bcolors.ENDC)
