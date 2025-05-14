@@ -9,8 +9,8 @@ class bcolors:
      
 class books():
     def __init__(self):
-        self.author = ""
         self.title = ""
+        self.author = ""
         self.price = 0
         self.Books = {}
         
@@ -39,10 +39,11 @@ class books():
             print(bcolors.RED + "Please enter a correct book title" + bcolors.ENDC)
 
     def showbook(self):
-        for x in self.Books:
-            print(bcolors.YELLOW + x + bcolors.ENDC)
-            print(bcolors.PURPLE + "Author: ", self.Books[x]["author"] + bcolors.ENDC)
-            print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
+        with open(books, "r") as f:
+            for x in books():
+                print(bcolors.YELLOW + x + bcolors.ENDC)
+                print(bcolors.PURPLE + "Author: ", self.Books[x]["author"] + bcolors.ENDC)
+                print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
         
     def save(self):
         name = input(bcolors.BLUE + "What do you want the file to be named?" + bcolors.ENDC)
