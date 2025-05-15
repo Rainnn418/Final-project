@@ -39,25 +39,33 @@ class books():
             print(bcolors.RED + "Please enter a correct book title" + bcolors.ENDC)
 
     def showbook(self):
-            with open("book.txt") as f:
-                for x in f.read():
-                    strs = x.split(",")
-                    self.title = strs[0]
-                    self.author = strs[1]
-                    self.price = float(strs[2])
+       if not self.Books:
+           print(bcolors.RED + "No books available." + bcolors.ENDC)
+
+       for x in self.Books:
+            print(bcolors.YELLOW + x + bcolors.ENDC)
+            print(bcolors.PURPLE + "Author: ", self.Books[x]["author"] + bcolors.ENDC)
+            print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
         
     def save(self):
         name = input(bcolors.BLUE + "What do you want the file to be named?" + bcolors.ENDC)
         with open(name, "w") as f:    
             for x in self.Books:
-                f.write("Title: " + x + "\n" + "Author: " + self.Books[x]["author"] +  "\n" + "Price: " + str(self.Books[x]["price"]) + "\n" + "\n")
+                f.write(f"{x}\n{self.Books[x]['author']}\n{self.Books[x]['price']}\n\n")
             print(bcolors.GREEN + f"All books saved to {name}" + bcolors.ENDC)
-           
+
     def load(self):
-        filename = input(bcolors.BLUE + "Which file do you want to open?" + bcolors.ENDC)
+        filename = input(bcolors.BLUE + "Which file do you want to load?" + bcolors.ENDC)
         if os.path.exists(filename):
             with open(filename, "r") as f:
-                print(f.read())
+                for x in f:
+                    strs = x.strip().split(",")
+                    if len(strs) == 3:
+                        self.title = strs[0]
+                        self.author = strs[1]
+                        self.price = float(strs[2])
+                    self.Books[self.title] = {"author": self.author, "price": self.price}
+            print(bcolors.GREEN + "File loaded successfully!" + bcolors.ENDC)
         else:
             print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
 
