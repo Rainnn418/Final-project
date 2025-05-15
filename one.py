@@ -51,7 +51,7 @@ class books():
         name = input(bcolors.BLUE + "What do you want the file to be named?" + bcolors.ENDC)
         with open(name, "w") as f:    
             for x in self.Books:
-                f.write(f"{x}\n{self.Books[x]['author']}\n{self.Books[x]['price']}\n\n")
+                f.write(f"Title: {x}\nAuthor: {self.Books[x]['author']}\nPrice: {self.Books[x]['price']}\n\n")
             print(bcolors.GREEN + f"All books saved to {name}" + bcolors.ENDC)
 
     def load(self):
