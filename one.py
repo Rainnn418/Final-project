@@ -13,7 +13,6 @@ class books():
         self.author = ""
         self.price = 0
         self.Books = {}
-        books.txt = {}
         
     def Add(self):
         try:
@@ -21,12 +20,7 @@ class books():
             self.author = input(bcolors.BLUE + "Enter the author of the book you add    \n" + bcolors.ENDC)
             self.price = float(input(bcolors.BLUE + "Enter the listing price of the book    \n" + bcolors.ENDC))
             self.Books[self.title] = {'author': self.author, 'price': self.price}
-
-            books.txt = self.Books
-            with open(books.txt, "w") as f:    
-                for x in self.Books:
-                    f.write()
-        
+       
             print(bcolors.GREEN + "You have added", self.title + bcolors.ENDC)
             print(self.Books)
         except:
@@ -47,12 +41,11 @@ class books():
     def showbook(self):
         if not self.Books:
            print(bcolors.RED + "No books available." + bcolors.ENDC)
-        books.txt = self.Books  
-        with open(books.txt, "r") as f:    
-            for x in self.Books:
-                print(bcolors.YELLOW + x + bcolors.ENDC)
-                print(bcolors.PURPLE + "Author: ", self.Books[x]["author"] + bcolors.ENDC)
-                print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
+
+        for x in self.Books:
+            print(bcolors.YELLOW + x + bcolors.ENDC)
+            print(bcolors.PURPLE + "Author: ", self.Books[x]["author"] + bcolors.ENDC)
+            print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
 
     def save(self):
         name = input(bcolors.BLUE + "What do you want the file to be named?" + bcolors.ENDC)
