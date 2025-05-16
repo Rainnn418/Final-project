@@ -48,14 +48,14 @@ class books():
             print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
 
     def save(self):
-        name = input(bcolors.BLUE + "What do you want the file to be named?" + bcolors.ENDC)
+        name = input(bcolors.BLUE + "What do you want the file to be named?\n" + bcolors.ENDC)
         with open(name, "w") as f:    
             for x in self.Books:
                 f.write(f"{x}, {self.Books[x]['author']}, {self.Books[x]['price']}\n")
             print(bcolors.GREEN + f"All books saved to {name}" + bcolors.ENDC)
 
     def load(self):
-        filename = input(bcolors.BLUE + "Which file do you want to load?" + bcolors.ENDC)
+        filename = input(bcolors.BLUE + "Which file do you want to load?\n" + bcolors.ENDC)
         if os.path.exists(filename):
             with open(filename, "r") as f:
                 for x in f:
@@ -70,10 +70,17 @@ class books():
             print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
 
     def delete(self):
-        filename = input(bcolors.BLUE + "Which file do you want to delete?" + bcolors.ENDC)
+        filename = input(bcolors.BLUE + "Which file do you want to delete?\n" + bcolors.ENDC)
         if os.path.exists(filename):
            os.remove(filename)
            print(bcolors.GREEN + "You have deleted." + bcolors.ENDC)
         else:
             print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
-            
+
+    def showfile(self):
+        sbn = input(bcolors.BLUE + "Which file do you want to open?\n" + bcolors.ENDC)
+        if os.path.exists(sbn):
+            with open(sbn, "r") as f:
+                print(bcolors.YELLOW + f.read() + bcolors.ENDC)
+        else:
+            print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
