@@ -11,7 +11,6 @@ a = books()
 game = True 
 while game:
     v = input("Add book -- 1  \nRemove book -- 2  \nShow books you added -- 3  \nCreate a file -- 4  \nLoad your file --  5  \nDelete your file --  6  \n")
-
     if v == "1":
         b = a.Add()
     elif v == "2":

@@ -13,6 +13,7 @@ class books():
         self.author = ""
         self.price = 0
         self.Books = {}
+        books.txt = {}
         
     def Add(self):
         try:
@@ -20,7 +21,12 @@ class books():
             self.author = input(bcolors.BLUE + "Enter the author of the book you add    \n" + bcolors.ENDC)
             self.price = float(input(bcolors.BLUE + "Enter the listing price of the book    \n" + bcolors.ENDC))
             self.Books[self.title] = {'author': self.author, 'price': self.price}
-       
+
+            books.txt = self.Books
+            with open(books.txt, "w") as f:    
+                for x in self.Books:
+                    f.write()
+        
             print(bcolors.GREEN + "You have added", self.title + bcolors.ENDC)
             print(self.Books)
         except:
@@ -41,17 +47,18 @@ class books():
     def showbook(self):
         if not self.Books:
            print(bcolors.RED + "No books available." + bcolors.ENDC)
-
-        for x in self.Books:
-            print(bcolors.YELLOW + x + bcolors.ENDC)
-            print(bcolors.PURPLE + "Author: ", self.Books[x]["author"] + bcolors.ENDC)
-            print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
+        books.txt = self.Books  
+        with open(books.txt, "r") as f:    
+            for x in self.Books:
+                print(bcolors.YELLOW + x + bcolors.ENDC)
+                print(bcolors.PURPLE + "Author: ", self.Books[x]["author"] + bcolors.ENDC)
+                print(bcolors.PURPLE + "Price: ", str(self.Books[x]["price"]) + bcolors.ENDC)
 
     def save(self):
         name = input(bcolors.BLUE + "What do you want the file to be named?" + bcolors.ENDC)
         with open(name, "w") as f:    
             for x in self.Books:
-                f.write(f"Title: {x}\nAuthor: {self.Books[x]['author']}\nPrice: {self.Books[x]['price']}\n\n")
+                f.write(f"{x}, {self.Books[x]['author']}, {self.Books[x]['price']}\n")
             print(bcolors.GREEN + f"All books saved to {name}" + bcolors.ENDC)
 
     def load(self):
@@ -64,7 +71,7 @@ class books():
                         self.title = strs[0]
                         self.author = strs[1]
                         self.price = float(strs[2])
-                    self.Books[self.title] = {"author": self.author, "price": self.price}
+                        self.Books[self.title] = {"author": self.author, "price": self.price}
             print(bcolors.GREEN + "File loaded successfully!" + bcolors.ENDC)
         else:
             print(bcolors.RED + "The file does not exist" + bcolors.ENDC)
